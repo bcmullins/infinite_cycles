@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="Infinite Cycles and Epistemic Justification">
+		<meta name="author" content="Brett Mullins">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<title>Infinite Cycles and the Graphical Approach to Epistemic Justification</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Infinite Cycles and the Graphical Approach to Epistemic Justification</h3>
+					<h4>Brett Mullins</h4>
+					<h4>5/17/2019</h4>
+					<h5>SEP Conference 2019</h5>
+				</section>
+<!-- Section 1: Overview -->
+				<section>
+					<section>
+						<h3>Overview</h3>
+					</section>
+					<section>
+						<h3>Overview</h3>
+						<p>Over the past decade, great strides have been made in analyzing the structure of epistemic justification mathematically and probabilistically</p>
+						<ul>
+							<li class="fragment fade-up" data-fragment-index="1">Peijnenburg (2007) starts a research program studying the probabilistic properties of infinite regresses</li>
+							<li class="fragment fade-up" data-fragment-index="2">Berker (2015) provides a graph theoretic account of foundationalism, coherentism, and infinitism</li>
+							<li class="fragment fade-up" data-fragment-index="3">The Graphical Approach to Epistemic Justification</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Overview</h3>
+						<p>Extend the graph theoretic account using new results from graph theory on infinite cycles</p>
+						<table class="fragment fade-up" data-fragment-index="1">
+							<tbody>
+								<tr>
+									<th></th>
+									<th>Bounded Paths</th>
+									<th>Infinite Paths</th>
+								</tr>
+								<tr>
+									<th>Acyclic</th>
+									<td>Foundationalism</td>
+									<td>Infinitism</td>
+								</tr>
+								<tr>
+									<th>Edge Cover in Cycle Space</th>
+									<td>Coherentism</td>
+									<td class="fragment fade-up" data-fragment-index="2">Infinite Coherentism</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h3>Contents</h3>
+						<ul>
+							<li>Graph Preliminaries</li>
+							<li>Infinite Cycles</li>
+							<li>Graphical Approach</li>
+							<ul>
+								<li>Support Graphs</li>
+								<li>Foundational & Coherentism</li>
+								<li>Infinitism & Infinite Coherentism</li>
+							</ul>
+						</ul>
+					</section>
+				</section>
+<!-- Section 2: Graph Preliminaries -->
+				<section>
+					<section>
+						<h3>Graph Preliminaries</h3>
+					</section>
+					<section>
+						<h3>Example</h3>
+						<img src="images/example_graph.png" width="700em" height="400em" style="border:none;">
+					</section>
+					<section>
+						<h3>What is a Graph?</h3>
+						<div style="width: 100%">
+							<div style="float:left; width: 50%">
+								<img src="images/example_graph.png" width="700em" height="300em" style="border:none;">
+							</div>
+							<div style="float:right; width: 50%; font-size: 70%">
+								<p class="fragment fade-up" data-fragment-index="1">A graph is a set of vertices and edges: $G = (V, E)$</p>
+								<p class="fragment fade-up" data-fragment-index="2">Every directed graph $G$ has an underlying undirected graph $G'$</p>
+								<p class="fragment fade-up" data-fragment-index="3">$H = (V_H, E_H)$ is a subgraph of $G$ if $V_H \subset V, E_H \subset E$</p>
+								<p class="fragment fade-up" data-fragment-index="4">Example: $( \{ a,b,c \} , \{ab, bc, ca\})$</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Edge Covers</h3>
+						<div style="width: 100%">
+							<div style="float:left; width: 50%">
+								<img src="images/example_graph.png" width="700em" height="300em" style="border:none;">
+							</div>
+							<div style="float:right; width: 50%; font-size: 70%">
+								<p class="fragment fade-up" data-fragment-index="1">An <em>edge cover</em> of $G$ is a subgraph $H$ where every vertex of $G$ is incident to an edge in $H$. </p>
+								<p class="fragment fade-up" data-fragment-index="2">Example:</p>
+								<ul class="fragment fade-up" data-fragment-index="2">
+									<li>Removing $ca$ gives an edge cover</li>
+									<li>Removing $cd$ and $ed$ does not</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Paths & Cycles</h3>
+						<div style="width: 100%">
+							<div style="float:left; width: 50%">
+								<img src="images/example_graph.png" width="700em" height="300em" style="border:none;">
+							</div>
+							<div style="float:right; width: 50%; font-size: 65%">
+								<p class="fragment fade-up" data-fragment-index="1">A <em>path</em> a path is a sequence of edges connecting a distinct vertices</p>
+								<p class="fragment fade-up" data-fragment-index="1">Example: $caed = (ca, ae, ed)$</p>
+								<p class="fragment fade-up" data-fragment-index="2">The <em>length</em> of a path is the number of vertices in the path</p>
+								<p class="fragment fade-up" data-fragment-index="3">A <em>cycle</em> is a path except that the first and last vertices are the same</p>
+								<p class="fragment fade-up" data-fragment-index="3">Example: $abca = (ab, bc, ca)$</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Vertex Degree</h3>
+						<div style="width: 100%">
+							<div style="float:left; width: 50%">
+								<img src="images/example_graph.png" width="700em" height="300em" style="border:none;">
+							</div>
+							<div style="float:right; width: 50%; font-size: 70%">
+								<p class="fragment fade-up" data-fragment-index="1">The <em>degree</em> of a vertex $x$ is the number of edges incident to $x$</p>
+								<ul>
+									<li class="fragment fade-up" data-fragment-index="2">the <em>in-degree</em> of a vertex $x$ as the number of incident edges incoming to $x$</li>
+									<li class="fragment fade-up" data-fragment-index="3">the <em>out-degree</em> of a vertex $x$ as the number of incident edges outgoing from $x$</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Cycle Space</h3>
+						<div style="width: 100%">
+							<div style="float:left; width: 50%">
+								<img src="images/example_graph.png" width="700em" height="300em" style="border:none;">
+							</div>
+							<div style="float:right; width: 50%; font-size: 70%">
+								<p class="fragment fade-up" data-fragment-index="1">The <em>cycle space</em> of $G$, $\mathcal{C}(G)$, is the closure of the set of cycles for $G$ by edge disjoint union</p>
+								<p class="fragment fade-up" data-fragment-index="2"><strong>Theorem:</strong> Let $H = (V, E)$ be a subgraph of a finite undirected graph $G$. Then $E \in \mathcal{C}(G)$ if and only if every vertex of $G$ has even degree in $H$.</p>
+							</div>
+						</div>
+					</section>
+				</section>
+<!-- Section 3: Infinite Cycles -->
+			<section>
+				<section>
+					<h3>Infinite Cycles</h3>
+				</section>
+				<section>
+					<h3>What is an Infinite Cycle?</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<br><br>
+							<img src="images/double_ray.png" width="700em" height="60em" style="border:none;">
+							<p>The <em>double ray</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<p class="fragment fade-up" data-fragment-index="1">Does the theorem work for infinite graphs?</p>
+							<ol>
+								<li class="fragment fade-up" data-fragment-index="2">Any vertex can be reached from any other vertex</li>
+								<li class="fragment fade-up" data-fragment-index="3">Each vertex has degree two</li>
+								<li class="fragment fade-up" data-fragment-index="4">No edge is repeated</li>
+							</ol>
+							<p class="fragment fade-up" data-fragment-index="5">“...common sense tells us that this can hardly be right: shouldn’t cycles be round?” - Diestel (2004)</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Ends of an Infinite Graph</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<br><br>
+							<img src="images/double_ray.png" width="700em" height="70em" style="border:none;">
+							<p>The <em>double ray</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<p class="fragment fade-up" data-fragment-index="1">A <em>connected component</em> of a graph is a connected subgraph that is maximal</p>
+							<p class="fragment fade-up" data-fragment-index="2">An <em>end</em> of a graph to be the set of rays that belong to the same connected component after any finite set of vertices are removed</p>
+							<p class="fragment fade-up" data-fragment-index="3">Example: the double ray has two ends</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Ends & Connectedness</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<br><br>
+							<img src="images/one_ladder_pt.png" width="700em" height="200em" style="border:none;">
+							<p>The <em>one-ladder</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<p class="fragment fade-up" data-fragment-index="1">Think of ends as points at infinity</p>
+							<p class="fragment fade-up" data-fragment-index="2">A graph $G$ is <em>topologically connected</em> if there exists a path between any two vertices that is either finite or traverses ends</p>
+							<p class="fragment fade-up" data-fragment-index="3">A <em>ray</em> is a path from a vertex to an end</p>
+							<p class="fragment fade-up" data-fragment-index="4">The <em>degree of an end</em> is the maximum number of edge disjoint rays contained in the end</p>						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Infinite Cycles</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<img src="images/one_ladder_pt.png" width="700em" height="200em" style="border:none;">
+							<p>The <em>one-ladder</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<p><strong>Theorem:</strong> Let $C$ be a subgraph of a locally finite graph $G$. Then $C$ is a cycle just in case $C$ is topologically connected and the degree of every vertex and end is two.</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Infinite Cycles</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<img src="images/one_ladder_pt.png" width="700em" height="200em" style="border:none;">
+							<p>The <em>one-ladder</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<img src="images/inf_cycle.png" width="700em" height="200em" style="border:none;">
+							<p>The infinite cycle contained in the <em>one-ladder</em> graph</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Infinite Cycle Space</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<img src="images/one_ladder_pt.png" width="700em" height="200em" style="border:none;">
+							<p>The <em>one-ladder</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<p><strong>Theorem:</strong> Let $G = (V, E)$ be a locally fininte graph. Then $E \in \mathcal{C}(G)$ if and only if every vertex and every end of $G$ has even degree.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+<!-- Section 4: Graphical Approach -->
+			<section>
+				<section>
+					<h3>Graphical Approach to Epistemic Justification</h3>
+				</section>
+				<section>
+					<h3>Support Graphs</h3>
+					<p>Let vertices represent beliefs and directed edges represent relations of support between beliefs</p>
+					<p>Let $G = (V, E)$ be a support graph</p>
+					<p class="fragment fade-up" data-fragment-index="1">Constructing a support graph (informally):</p>
+					<ul class="fragment fade-up" data-fragment-index="1">
+						<li>Let a belief $p$ be given</li>
+						<li>For beliefs $s_0, s_1, \ldots$ supporting $p$, add an edge from $s_i$ to $p$ for all $i$</li>
+						<li>Repeat for each of $s_0, s_1, \ldots$ that have not appeared before and so on</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Support Graph Properties</h3>
+					<p>Example: If $p$ and $q$ are beliefs and $p$ supports $q$ then the support graph for $p$ is a subgraph of the support graph for $q$</p>
+					<p class="fragment fade-up" data-fragment-index="1">Importantly, there is much we do not know:</p>
+					<ul>
+						<li class="fragment fade-up" data-fragment-index="2">Does construction terminate in finite or $\omega$ steps?</li>
+						<li class="fragment fade-up" data-fragment-index="3">Connected?</li>
+						<li class="fragment fade-up" data-fragment-index="4">Acyclic?</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Theories of Justification</h3>
+					<p>These theories make assumptions on properties for support graphs</p>
+					<ul>
+						<li class="fragment fade-up" data-fragment-index="1">Are paths in $G$ bounded or unbounded?</li>
+						<li class="fragment fade-up" data-fragment-index="2">Are there no cycles in $G$ or can $G$ be deconstructed into cycles?</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Foundationalism</h3>
+					<blockquote>
+						Justification and knowledge are ultimately derivative from a set of basic or foundational elements whose justification does not depend in turn on that of anything else.
+						<cite>- BonJour (2010)</cite>
+					</blockquote>
+					<p class="fragment fade-up" data-fragment-index="1">Foundationalism imposes two conditions on $G$:</p>
+					<ul class="fragment fade-up" data-fragment-index="1">
+						<li>The length of the shortest path between $v, p$ for all $v \in V$ is bounded</li>
+						<li>$G$ is acyclic</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Foundationalism</h3>
+					<img src="images/foundationalism.png" width="600em" height="400em" style="border:none;">
+				</section>
+				<section>
+					<h3>Coherentism</h3>
+					<blockquote>
+						beliefs can only be justified by other beliefs...what justifies beliefs is the way they fit together: the fact that they cohere with each other
+						<cite>- BonJour (2010)</cite>
+					</blockquote>
+					<p class="fragment fade-up" data-fragment-index="1">Coherentism imposes two conditions on $G$:</p>
+					<ul class="fragment fade-up" data-fragment-index="1">
+						<li>The length of the shortest path between $v, p$ for all $v \in V$ is bounded</li>
+						<li>There is an edge cover of $G$ in $\mathcal{C}(G)$</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Coherentism</h3>
+					<img src="images/coherentism.png" width="700em" height="300em" style="border:none;">
+				</section>
+				<section>
+					<h3>Infinitism</h3>
+					<p>Infinitism borrows both from foundationalism that justification cannot be circular and from coherentism that only beliefs can justify other beliefs</p>
+					<p class="fragment fade-up" data-fragment-index="1">Infinitism imposes two conditions on $G$:</p>
+					<ul class="fragment fade-up" data-fragment-index="1">
+						<li>For each vertex $v \in V$, there is an infinite path to $p$ containing $v$</li>
+						<li>$G$ is acyclic</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Infinitism</h3>
+					<img src="images/infinitism.png" width="700em" height="450em" style="border:none;">
+				</section>
+				<section>
+					<h3>Infinite Coherentism</h3>
+					<p class="fragment fade-up" data-fragment-index="1">Infinite Coherentism imposes a single condition on $G$:</p>
+					<ul class="fragment fade-up" data-fragment-index="1">
+						<li>There is an edge cover of $G$ in $\mathcal{C}(G)$</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Infinite Coherentism</h3>
+					<div style="width: 100%">
+						<div style="float:left; width: 50%; font-size: 70%">
+							<img src="images/inf_coherentism.png" width="700em" height="200em" style="border:none;">
+							<p>The <em>one-ladder</em> graph</p>
+						</div>
+						<div style="float:right; width: 50%; font-size: 70%">
+							<p>Interpretation: two indefinite reason giving processes go to/from the same end when they are appropriately connected or coherent</p>
+						</div>
+					</div>
+				</section>
+			</section>
+<!-- Section 5: Conclusions -->
+			<section>
+				<section>
+					<h3>Conclusions</h3>
+				</section>
+				<section>
+					<h3>Conclusions</h3>
+					<ul>
+						<li>Support graphs are a useful tool for exploring the properties of epistemic justification</li>
+						<br>
+						<li class="fragment fade-up" data-fragment-index="1">By introducing infinite cycles, we can consider a fourth solution to the regress problem</li>
+					</ul>
+				</section>
+				<section>
+					<h3>References</h3>
+					<ul style="font-size: 70%; ">
+						<li>Peijnenburg, Jeanne, (2007). “Infinitism Regained.” Mind 116(463), 597-602.</li>
+						<li>Berker, Selim (2015). “Coherentism via Graphs.” Philosophical Issues 25(1), 322-352.</li>
+						<li>Diestel, Reinhard (2004). “On Infinite Cycles in Graphs: Or How to Make Graph Homology Interesting.” The American Mathematical Monthly 111(7), 559-571.</li>
+						<li>BonJour, Lawrence (2010). Epistemology: Classic Problems and Contemporary Responses, 2nd Edition, Rowman & Littlefield.</li>
+					</ul>
+				</section>
+			</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					center: true,
+
+					transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				math: {
+						mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+						config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+					},
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
